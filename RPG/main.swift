@@ -1,6 +1,2 @@
 import Foundation
 
-func main() {
-    
-}
-

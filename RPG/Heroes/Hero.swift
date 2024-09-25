@@ -1,7 +1,7 @@
 class Hero {
     var name: String
-    let maxHp: Double
-    var hp: Int
+    var maxHp: Double
+    var hp: Double
     var skillMod = 1.0
     var tenacity = 1.0
     var cantHeal = false
@@ -24,14 +24,8 @@ class Hero {
         }
     }
     
-    func deathCheckAoE(_ targets: inout [Enemy]) {
-        if targets.any { target.hp <= 0 } {
-            print(">>> \(targets.filter { target.hp <= 0 }.map { target.name }) \(if targets.filter { target.hp <= 0 }.size == 1 {
-                "is"
-            } else {
-                "are"
-            }) dead <<<")
-        }
+    func deathCheckAoE(_ targets: [Enemy]) {
+        if (targets.contains { target in target.hp <= 0 }) {
+            print(">>> \(targets.filter { target in target.hp <= 0 }.map { target in target.name }) \(targets.filter { target in target.hp <= 0 }.count == 1 ? "is" : "are") dead <<<")}
     }
 }
-

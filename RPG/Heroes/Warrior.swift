@@ -1,31 +1,50 @@
-class Warrior(): Hero(name, maxHp) {
+import Foundation
+
+class Warrior: Hero {
     
-    init(name: String, maxHp: Double) {
-        self.name = "Haarkon"
-        self.maxHp = 100
-    }
     var isTaunting = true
     var tauntTimer = 0
     
+    init() {
+        super.init(name: "Haarkon", maxHp: 100.0)
+    }
+    
     func stab(_ target: Enemy) {
+        let dmgAmnt = 50 * skillMod
+        target.hp -= dmgAmnt
         
+        print("    >>> \(name) deals \(Int(dmgAmnt)) dmg to \(target.name) with Stab <<<")
+        
+        sleep(200)
+        
+        print("             >>> \(target.name) now has \(Int(target.hp)) hp <<<")
+        
+        deathCheck(target)
     }
     
     func cleave(_ targets: [Enemy]) {
+        targets.forEach { target in target.hp -= 30 * skillMod }
         
+        print("    >>> \(name) deals \(Int(30 * skillMod)) dmg to each enemy with Cleave <<<")
+        
+        sleep(200)
+        
+        print("              >>> \(targets.map { target in target.name }) now \(targets.count == 1 ? "has" : "have") \(targets.map { target in Int(target.hp) }) hp <<<")
+        
+        deathCheckAoE(targets)
     }
     
     func taunt() {
         isTaunting = true
         tauntTimer = 3
         
-        println(">>> \(bold)\(name) \(normal)is $boldtaunting$reset the ${bold}enemies$reset, forcing them to attack $boldhim$reset for the next 3 turns$reset <<<")
+        print("    >>> \(name) is taunting the enemies, forcing them to attack him for the next 3 turns <<<")
     }
     
     func battleShout() {
         tenacity += 0.1
         
-        println(">>> \(bold)\(name) \(normal)made himself more tenacious (x10% dmg reduction) with \(bold)Battle Shout \(normal)<<<")
+        print("    >>> \(name) made himself more tenacious (x10% dmg reduction) with Battle Shout <<<")
     }
     
 }
