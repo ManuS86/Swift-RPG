@@ -20,6 +20,20 @@
 
 /* Begin PBXFileReference section */
 		CE2F4BF62C9D636900643971 /* RPG */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = RPG; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE938B2A2CA3BDE9008DE8BC /* Enemy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		DE938B2B2CA3BE0A008DE8BC /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
+		DE938B2C2CA3C621008DE8BC /* Necromancer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Necromancer.swift; sourceTree = "<group>"; };
+		DE938B2D2CA3CF06008DE8BC /* Cleric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cleric.swift; sourceTree = "<group>"; };
+		DE938B2E2CA3CF0C008DE8BC /* Mage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mage.swift; sourceTree = "<group>"; };
+		DE938B2F2CA3CF15008DE8BC /* Warrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
+		DE938B302CA3CF26008DE8BC /* Golem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Golem.swift; sourceTree = "<group>"; };
+		DE938B312CA3CF2F008DE8BC /* Inventory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inventory.swift; sourceTree = "<group>"; };
+		DE938B322CA3CF35008DE8BC /* Elixir.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Elixir.swift; sourceTree = "<group>"; };
+		DE938B332CA3CF44008DE8BC /* Potion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Potion.swift; sourceTree = "<group>"; };
+		DE938B342CA3CF49008DE8BC /* Health Potion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Health Potion.swift"; sourceTree = "<group>"; };
+		DE938B362CA3D0CF008DE8BC /* Combat System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combat System.swift"; sourceTree = "<group>"; };
+		DE938B372CA3D0F1008DE8BC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		DE938B382CA3D483008DE8BC /* Weapon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -44,6 +58,11 @@
 		CE2F4BED2C9D636900643971 = {
 			isa = PBXGroup;
 			children = (
+				DE938B252CA2C814008DE8BC /* Combat System */,
+				DE938B292CA2C848008DE8BC /* Enemies */,
+				DE938B282CA2C840008DE8BC /* Heroes */,
+				DE938B272CA2C832008DE8BC /* Inventory */,
+				DE938B262CA2C81D008DE8BC /* Utils */,
 				CE2F4BF82C9D636900643971 /* RPG */,
 				CE2F4BF72C9D636900643971 /* Products */,
 			);
@@ -55,6 +74,55 @@
 				CE2F4BF62C9D636900643971 /* RPG */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DE938B252CA2C814008DE8BC /* Combat System */ = {
+			isa = PBXGroup;
+			children = (
+				DE938B362CA3D0CF008DE8BC /* Combat System.swift */,
+			);
+			path = "Combat System";
+			sourceTree = "<group>";
+		};
+		DE938B262CA2C81D008DE8BC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				DE938B372CA3D0F1008DE8BC /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		DE938B272CA2C832008DE8BC /* Inventory */ = {
+			isa = PBXGroup;
+			children = (
+				DE938B322CA3CF35008DE8BC /* Elixir.swift */,
+				DE938B342CA3CF49008DE8BC /* Health Potion.swift */,
+				DE938B312CA3CF2F008DE8BC /* Inventory.swift */,
+				DE938B332CA3CF44008DE8BC /* Potion.swift */,
+				DE938B382CA3D483008DE8BC /* Weapon.swift */,
+			);
+			path = Inventory;
+			sourceTree = "<group>";
+		};
+		DE938B282CA2C840008DE8BC /* Heroes */ = {
+			isa = PBXGroup;
+			children = (
+				DE938B2D2CA3CF06008DE8BC /* Cleric.swift */,
+				DE938B2B2CA3BE0A008DE8BC /* Hero.swift */,
+				DE938B2E2CA3CF0C008DE8BC /* Mage.swift */,
+				DE938B2F2CA3CF15008DE8BC /* Warrior.swift */,
+			);
+			path = Heroes;
+			sourceTree = "<group>";
+		};
+		DE938B292CA2C848008DE8BC /* Enemies */ = {
+			isa = PBXGroup;
+			children = (
+				DE938B2A2CA3BDE9008DE8BC /* Enemy.swift */,
+				DE938B302CA3CF26008DE8BC /* Golem.swift */,
+				DE938B2C2CA3C621008DE8BC /* Necromancer.swift */,
+			);
+			path = Enemies;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
