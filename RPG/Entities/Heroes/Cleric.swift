@@ -7,7 +7,7 @@ class Cleric: Hero {
     }
     
     func healingHands(_ target: Hero) {
-        let healAmnt = Double.random(in: 35...45) * skillMod
+        let healAmnt = Double.random(in: 35...45) * abilityMod
         let preHealHp = target.hp
         target.heal(healAmnt)
         let amntHealed = hp - preHealHp
@@ -18,7 +18,7 @@ class Cleric: Hero {
     }
     
     func healingWave(_ targets: [Hero]) {
-        let healAmnt = Double.random(in: 25...35) * skillMod
+        let healAmnt = Double.random(in: 25...35) * abilityMod
         let preHealHp = targets.map { target in target.hp }
         targets.forEach { target in if !target.cantHeal {target.heal(healAmnt)} }
         let postHealHp = targets.map { hp in hp.hp }
@@ -63,8 +63,8 @@ class Cleric: Hero {
                 >>> It's \(toString())'s turn <<<
             
             Choose which ability to use:
-            [1] Healing Hands (Heal an ally for \(Int(35 * skillMod))-\(Int(45 * skillMod)) hp.)
-            [2] Healing Wave (Heal each ally for \(Int(25 * skillMod))-\(Int(35 * skillMod)) hp.)
+            [1] Healing Hands (Heal an ally for \(Int(35 * abilityMod))-\(Int(45 * abilityMod)) hp.)
+            [2] Healing Wave (Heal each ally for \(Int(25 * abilityMod))-\(Int(35 * abilityMod)) hp.)
             [3] Dispel (Dispel an ally's debuff.)
             [4] Cripple (Reduce an enemy's dmg dealt by 10%.)
             [5] Use Item
@@ -107,7 +107,7 @@ class Cleric: Hero {
         case 5:
             Thread.sleep(forTimeInterval: 0.2)
             if !inventoryUsed {
-                if !inventory.use(&inventory, heroes) {
+                if !inventory.use(heroes) {
                     attack(heroes, enemies, golem, &inventory, &inventoryUsed, &cursedHero)
                 } else {
                     inventoryUsed = true

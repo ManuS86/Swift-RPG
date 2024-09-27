@@ -9,7 +9,7 @@ class Warrior: Hero {
     }
     
     func stab(_ target: Enemy) {
-        let dmgAmnt = 50 * skillMod
+        let dmgAmnt = 50 * abilityMod
         target.hp -= dmgAmnt
         
         print("    >>> \(name) deals \(Int(dmgAmnt)) dmg to \(target.name) with Stab <<<")
@@ -22,9 +22,9 @@ class Warrior: Hero {
     }
     
     func cleave(_ targets: [Enemy]) {
-        targets.forEach { target in target.hp -= 30 * skillMod }
+        targets.forEach { target in target.hp -= 30 * abilityMod }
         
-        print("    >>> \(name) deals \(Int(30 * skillMod)) dmg to each enemy with Cleave <<<")
+        print("    >>> \(name) deals \(Int(30 * abilityMod)) dmg to each enemy with Cleave <<<")
         
         sleep(200)
         
@@ -46,58 +46,92 @@ class Warrior: Hero {
         print("    >>> \(name) made himself more tenacious (x10% dmg reduction) with Battle Shout <<<")
     }
     
-    func attack(_ heroes: [Hero], _ warrior: Warrior, _ enemies: [Enemy], _ golem: Golem?, _ inventory: inout Inventory, _ inventoryUsed: inout Bool) {
+    func attack(_ heroes: [Hero], _ enemies: [Enemy], _ golem: Golem?, _ inventory: inout Inventory, _ inventoryUsed: inout Bool) {
         let prompt =
             """
 
-                >>> It's \(warrior.toString)'s turn <<<
+            n                                                                 :.
+             E%                                                                :"5
+            z  %                                                              :" `
+            K   ":                                                           z   R
+            ?     %.                                                       :^    J
+             ".    ^s                                                     f     :~
+              '+.    #L                                                 z"    .*
+                '+     %L                                             z"    .~
+                  ":    '%.                                         .#     +
+                    ":    ^%.                                     .#`    +"
+                      #:    "n                                  .+`   .z"
+                        #:    ":                               z`    +"
+                          %:   `*L                           z"    z"
+                            *:   ^*L                       z*   .+"
+                              "s   ^*L                   z#   .*"
+                                #s   ^%L               z#   .*"
+                                  #s   ^%L           z#   .r"
+                                    #s   ^%.       u#   .r"
+                                      #i   '%.   u#   .@"
+                                        #s   ^%u#   .@"
+                                          #s x#   .*"
+                                           x#`  .@%.
+                                         x#`  .d"  "%.
+                                       xf~  .r" #s   "%.
+                                 u   x*`  .r"     #s   "%.  x.
+                                 %Mu*`  x*"         #m.  "%zX"
+                                 :R(h x*              "h..*dN.
+                               u@NM5e#>                 7?dMRMh.
+                             z$@M@$#"#"                 *""*@MM$hL
+                           u@@MM8*                          "*$M@Mh.
+                         z$RRM8F"                             "N8@M$bL
+                        5`RM$#                                  'R88f)R
+                        'h.$"                                     #$x*
+            
+                >>> It's \(toString)'s turn <<<
             
             Choose which ability to use:
-            [1] Stab (Deal \(Int(50 * warrior.skillMod)) dmg to an enemy.)
-            [2] Cleave (Deal \(Int(30 * warrior.skillMod)) dmg to each enemy.)
-            [3] Taunt (Force enemies to target \(warrior.name) for 3 turns.)
+            [1] Stab (Deal \(Int(50 * abilityMod)) dmg to an enemy.)
+            [2] Cleave (Deal \(Int(30 * abilityMod)) dmg to each enemy.)
+            [3] Taunt (Force enemies to target \(name) for 3 turns.)
             [4] Battle Shout (Increase your tenacity by 10%.)
             [5] Use Item
             """
-        let selection = select(prompt, 5)
         
+        let selection = select(prompt, 5)
         switch selection {
         case 1:
             Thread.sleep(forTimeInterval: 0.4)
             if (enemies.filter { enemy in enemy.hp > 0 }.count > 1) {
                 if (golem != nil && golem!.isTaunting && golem!.hp > 0) {
-                    warrior.stab(golem!)
+                    stab(golem!)
                 } else {
                     let target = targetEnemy(enemies)
-                    warrior.stab(target)
+                    stab(target)
                 }
             } else {
                 if golem != nil && golem!.isTaunting && golem!.hp > 0 {
-                    warrior.stab(golem!)
+                    stab(golem!)
                 } else {
-                    warrior.stab(enemies.filter { enemy in enemy.hp > 0 }[0])
+                    stab(enemies.filter { enemy in enemy.hp > 0 }[0])
                 }
             }
         case 2:
             Thread.sleep(forTimeInterval: 0.4)
-            warrior.cleave(enemies.filter { enemy in enemy.hp > 0 })
+            cleave(enemies.filter { enemy in enemy.hp > 0 })
         case 3:
             Thread.sleep(forTimeInterval: 0.4)
-            warrior.taunt()
+            taunt()
         case 4:
-            warrior.battleShout()
+            battleShout()
         case 5:
             Thread.sleep(forTimeInterval: 0.2)
             if !inventoryUsed {
-                let isInventoryUsable = inventory.use(&inventory, heroes)
+                let isInventoryUsable = inventory.use(heroes)
                 if (!isInventoryUsable) {
-                    attack(heroes, warrior, enemies, golem, &inventory, &inventoryUsed)
+                    attack(heroes, enemies, golem, &inventory, &inventoryUsed)
                 } else {
                     inventoryUsed = true
                 }
             } else {
                 print("!You have already used your inventory this round, try something else!")
-                attack(heroes, warrior, enemies, golem, &inventory, &inventoryUsed)
+                attack(heroes, enemies, golem, &inventory, &inventoryUsed)
             }
         default:
             print ("Something went wrong.")

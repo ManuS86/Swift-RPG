@@ -1,11 +1,9 @@
-class Inventory {
+import Foundation
+
+struct Inventory {
     private var content = [HealthPotion(), HealthPotion(), HealthPotion(), Elixir()]
     
-    init(content: [Potion]) {
-        self.content = content
-    }
-    
-    func tryUseHealthPotion(_ target: Hero) -> Bool {
+    mutating func tryUseHealthPotion(_ target: Hero) -> Bool {
         guard let healthPotion = (content.first { potion in potion is HealthPotion }) else {
             print("You are out of Health Potions. Try using another action.")
             return false
@@ -20,7 +18,7 @@ class Inventory {
         return true
     }
     
-    func tryUseElixir(_ target: Hero) -> Bool {
+    mutating func tryUseElixir(_ target: Hero) -> Bool {
         guard let elixir = (content.first { potion in potion is Elixir }) else {
             print("You are out of Elixirs. Try using another action.")
             return false
@@ -29,6 +27,30 @@ class Inventory {
         let elixirIndex = content.firstIndex { potion in potion is Elixir }
         content.remove(at: elixirIndex!)
         return true
+    }
+    
+    mutating func use(_ heroes: [Hero]) -> Bool {
+        let prompt = """
+                
+                >>> \(self) <<<
+            [1] Health Potion
+            [2] Elixir
+            Select an item to use:
+        """
+        
+        switch select(prompt, 2) {
+        case 1:
+            Thread.sleep(forTimeInterval: 0.4)
+            let target = targetHero(heroes)
+            return tryUseHealthPotion(target)
+        case 2:
+            Thread.sleep(forTimeInterval: 0.4)
+            let target = targetHero(heroes)
+            return tryUseElixir(target)
+        default:
+            print("Something went wrong")
+        }
+        return false
     }
     
     func size() -> Int {
