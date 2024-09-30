@@ -1,6 +1,6 @@
 import Foundation
 
-class Warrior: Hero {
+class Warrior: Hero, WeaponUser {
     var isTaunting = true
     var tauntTimer = 0
     

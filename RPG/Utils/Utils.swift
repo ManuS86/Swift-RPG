@@ -18,7 +18,7 @@ func select(_ prompt: String, _ max: Int) -> Int {
 func targetEnemy(_ enemies: [Enemy]) -> Enemy {
     let prompt = """
         
-        \(enemies.filter { enemy in enemy.hp > 0 })
+        \(enemies.filter { enemy in enemy.hp > 0 }.map { enemy in enemy.toString() })
         Select a target [1, 2, ..]:
     """
     
@@ -29,7 +29,7 @@ func targetEnemy(_ enemies: [Enemy]) -> Enemy {
 func targetHero(_ heroes: [Hero]) -> Hero {
     let prompt = """
         
-        \(heroes.filter { hero in hero.hp > 0 })
+        \(heroes.filter { hero in hero.hp > 0 }.map { hero in hero.toString() })
         Select a target [1, 2, ..]:
     """
     

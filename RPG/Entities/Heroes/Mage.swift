@@ -1,6 +1,6 @@
 import Foundation
 
-class Mage: Hero {
+class Mage: Hero, MagicUser {
     
     init() {
         super.init(name: "Keros", maxHp: 80.0)

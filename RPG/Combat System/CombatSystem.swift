@@ -176,7 +176,7 @@ struct CombatSystem {
         
         while !gameOverCheck() && attackers.count > 0 {
             let prompt = """
-                    \(attackers)
+                    \(attackers.map { hero in hero.toString() })
                     Select an attacker [1, 2, ..]:
             """
             Thread.sleep(forTimeInterval: 0.4)

@@ -1,6 +1,6 @@
 import Foundation
 
-class Cleric: Hero {
+class Cleric: Hero, HolyUser {
     
     init() {
         super.init(name: "Elara", maxHp: 90.0)
